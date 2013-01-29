@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <title>Voting</title>
+    <link type="text/css" rel="stylesheet" href="stylesheets/default.css" />
+    <script language="javascript">
+      function checkVote() {
+        return true;
+      }
+              
+    </script>
+  </head>
+  <body>
+    <div class="head">
+      <h2>
+        You are now voting for the election {{ election }}!<br>
+        Leaving it as 0 means that you do not like this candidate at all.
+      </h2>
+    </div>
+    <div>
+      <form name="vote" action="/vote?name={{ election }}" method="post" onSubmit="return checkVote()">
+        {% for i in range(0, candidates|length) %}
+        <p class="left">{{ candidates[i] }}: <input type="text" name="election_{{ i }}" value="0"></p>
+        {% endfor %}
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+  </body>
+</html>

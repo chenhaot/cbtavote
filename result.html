@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <title>Result</title>
+    <link type="text/css" rel="stylesheet" href="stylesheets/default.css" />
+    <script language="javascript">
+      function checkVote() {
+        return true;
+      }
+              
+    </script>
+  </head>
+  <body>
+    <div class="head">
+      <h2>
+        This is the result for the election {{ election }}.
+        The first row is the winner!
+        Check the end of this page to see whether these is a tie in the last round.
+      </h2>
+    </div>
+    <div>
+      <table>
+        <tr>
+          <td>Candidate</td>
+          {% for i in range(0, total + 1) %}
+          <td> {{ (i + 1) % (total + 1)}}</td>
+          {% endfor %}
+        </tr>
+        {% for i in range(0, candidates|length) %}
+        <tr>
+          <td> {{ candidates[i] }}</td>
+          {% for j in range(0, total + 1) %}
+          <td> {{ count[candidates[i]][(j + 1) % (total + 1)] }} </td>
+          {% endfor %}
+        </tr>
+        {% endfor %}
+      </table>
+      <p>Eliminating Process</p>
+      {% for i in range(0, logs|length) %}
+      <p class="left">Round {{ i + 1 }}</p>
+      <table>
+        {{ logs[i] }}   
+      </table>
+      {% endfor %}
+    </div>
+  </body>
+</html>

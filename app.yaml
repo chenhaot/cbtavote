@@ -1,0 +1,37 @@
+application: cbtavote
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+handlers:
+- url: /favicon\.ico
+  static_files: favicon.ico
+  upload: favicon\.ico
+
+- url: /stylesheets
+  static_dir: stylesheets
+
+  
+- url: /votesuccess\.html
+  static_files: votesuccess.html
+  upload: votesuccess\.html
+
+- url: /noelection\.html
+  static_files: noelection.html
+  upload: noelection\.html
+
+- url: /electionsuccess\.html
+  static_files: electionsuccess.html
+  upload: electionsuccess\.html
+
+- url: .*
+  script: main.app
+
+
+libraries:
+- name: webapp2
+  version: "2.5.1"
+
+- name: jinja2
+  version: latest

@@ -1,0 +1,42 @@
+<html>
+  <head>
+    <title>Start a vote</title>
+    <link type="text/css" rel="stylesheet" href="stylesheets/default.css" />
+    <script language="javascript">
+      function checkInfo() {
+        var user = document.getElementsByName("username")[0].value;
+        var reg = /\w+/;
+        if (!reg.test(user)) {
+            alert("Username must be \\w+");
+            return false;
+        }
+        return true;
+      }
+              
+    </script>
+  </head>
+  <body>
+    <div class="head">
+      <h2>
+        {% if duplicate %}
+        The election name already exists, try another one!
+        {% else %}
+        Put the name of the election and candidates.
+        {% endif %}
+      </h2>
+    </div>
+    <div>
+      <form name="voteInfo" action="/start" method="post" onSubmit="return checkInfo()">
+        <p class="left">Election: 
+        (It is good to start with year number, for example, '2012-chair' to keep election name unique.)
+        <input type="text" name="election"> 
+        </p>
+        <p class="left">Candidates: 
+        (Seperate candidates with comma, for example, "Jacob, Sarah, Daniel".)
+        </p>
+        <textarea name="candidates"></textarea>
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+  </body>
+</html>
